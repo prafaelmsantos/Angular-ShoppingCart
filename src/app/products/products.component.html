@@ -1,0 +1,85 @@
+
+  <nav class="navbar navbar-dark bg-primary">
+      <div class="container-fluid">
+          <a class="navbar-brand" href="#">STORE</a>
+          <button routerLink="#" class="btn btn-primary">
+            <i style="font-size: 30px;" class="fas fa-cart-plus"></i>
+            <div style="font-size: 10px;" class="badge bg-danger"></div>
+        </button>
+      </div>
+  </nav>
+
+
+  <div class="container mt-5 mb-5" >
+
+      <!--#region LIST OF COMPONENTS-->
+      <div class="row">
+        <div class="col-8" id="both" dir="ltr">
+          <div class="row">
+            <div class="col-4" *ngFor="let component of components">
+              <div class="card mt-4">
+                <div class="card-header">
+                  <h3 class="text-truncate">
+                    {{component.name}}
+                  </h3>
+              </div>
+                <div class="card-body">
+                  <p class="card-text"><b>Type: </b><span>{{component.type}}</span></p>
+                  <p class="card-text"><b>Value: </b><span>{{component.value}}</span></p>
+                  <div class="d-flex justify-content-start align-items-start">
+                    <div class="btn-group">
+                      <div *ngIf="component.showBtn===true">
+                        <button type="button" class="btn btn-sm btn-success" (click)="addToCart(component)">Add</button>
+                      </div>
+                      <div *ngIf="component.showBtn===false">
+                        <button type="button" class="btn btn-sm btn-danger" (click)="delToCart(component.id, component)">Remover</button>
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+          </div>
+        </div>
+          <!--#endregion LIST OF COMPONENTS-->
+        </div>
+
+        <div class="col-4">
+                <!--#region LIST OF COMPONENTS ON CART-->
+
+          <h4 class="d-flex justify-content-between align-items-center mb-3 mt-5" *ngIf="components && components.length">
+            <span class="text-primary">Your cart</span>
+            <span class="badge bg-primary rounded-pill">{{items.length}}</span>
+        </h4>
+
+        <ul class="list-group mb-3">
+
+            <li class="list-group-item d-flex justify-content-between lh-sm"  *ngFor="let list of items">
+                <div>
+                    <h6 class="my-0">{{list.name}}</h6>
+                </div>
+                <span class="text-muted">{{list.value}} € <small> ({{list.value * 0.23}} €)</small></span>
+            </li>
+
+            <li class="list-group-item d-flex justify-content-between">
+                <span>Total</span>
+                <span><strong>{{total}} €</strong><small> ({{totalT}} €)</small></span>
+            </li>
+        </ul>
+
+        <div class="card p-2 mb-5">
+            <div class="btn-group">
+
+                <!--#region ACTIONS ON CART-->
+                <button class="btn btn-secondary">Get cheapest build</button>
+                <button class="btn btn-secondary" (click)="clearCart()">Clear all</button>
+                <!--#endregion ACTIONS ON CART-->
+
+            </div>
+        </div>
+        <!--#endregion LIST OF COMPONENTS ON CART-->
+      </div>
+  </div>
+
+
+
+
