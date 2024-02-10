@@ -1,4 +1,4 @@
-# IPN-App by Rafael Santos
+# Angular-ShoppingCart by Rafael Santos
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.1.
 
